@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yurii Hunko — Content Ops, built like systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0D110F;
+    --bg-alt: #10140F;
+    --panel: #161B18;
+    --panel-border: #272F29;
+    --text: #ECE8DE;
+    --text-muted: #9B9C93;
+    --text-faint: #6C6E67;
+    --accent: #E3A857;
+    --accent-soft: rgba(227,168,87,0.13);
+    --teal: #6FA8A0;
+    --teal-soft: rgba(111,168,160,0.14);
+    --max: 880px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(700px 400px at 85% -5%, rgba(227,168,87,0.06), transparent 60%),
+      radial-gradient(600px 400px at 0% 15%, rgba(111,168,160,0.05), transparent 60%);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .label{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .label::before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(13,17,15,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--panel-border);
+  }
+  header .wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .mark{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .mark span{ color: var(--accent); }
+  nav{ display: flex; gap: 26px; align-items: center; }
+  nav a{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  nav a:hover{ color: var(--text); }
+  .btn{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13.5px;
+    font-weight: 500;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+    display: inline-block;
+  }
+  .btn:hover{ background: var(--accent); color: #14100A; }
+  @media (max-width: 640px){
+    nav .navlinks{ display: none; }
+  }
+
+  .hero{
+    padding: 72px 0 56px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: rise 0.7s ease forwards 0.1s;
+  }
+  @keyframes rise{ to{ opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce){
+    .hero{ animation: none; opacity: 1; transform: none; }
+  }
+
+  .hero .label{ margin-bottom: 22px; }
+  .hero h1{
+    font-size: 44px;
+    line-height: 1.18;
+    max-width: 15ch;
+  }
+  .hero h1 em{
+    font-style: normal;
+    color: var(--accent);
+  }
+  .hero p.sub{
+    max-width: 56ch;
+    color: var(--text-muted);
+    font-size: 17.5px;
+    margin-top: 22px;
+  }
+
+  .stat-strip{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--panel-border);
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .stat{
+    padding: 18px 20px 18px 0;
+    border-right: 1px solid var(--panel-border);
+  }
+  .stat:last-child{ border-right: none; padding-right: 0; }
+  .stat .num{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 27px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .stat .cap{
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-top: 4px;
+  }
+  @media (max-width: 640px){
+    .hero h1{ font-size: 32px; }
+    .stat-strip{ grid-template-columns: 1fr; }
+    .stat{ border-right: none; border-bottom: 1px solid var(--panel-border); padding: 14px 0; }
+    .stat:last-child{ border-bottom: none; }
+  }
+
+  section{ padding: 56px 0; border-top: 1px solid var(--panel-border); }
+
+  .section-head{ margin-bottom: 30px; max-width: 62ch; }
+  .section-head h2{ font-size: 26px; margin-top: 10px; }
+  .section-head p{ color: var(--text-muted); margin-top: 12px; font-size: 16px; }
+
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .about-grid p{ color: var(--text-muted); font-size: 16px; }
+  .about-grid p + p{ margin-top: 14px; }
+  .fact-list{ list-style: none; margin: 0; padding: 0; }
+  .fact-list li{
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--panel-border);
+    font-size: 14.5px;
+  }
+  .fact-list li:first-child{ padding-top: 0; }
+  .fact-list span:first-child{
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-faint);
+  }
+  .fact-list span:last-child{ color: var(--text); text-align: right; }
+  @media (max-width: 700px){ .about-grid{ grid-template-columns: 1fr; } }
+
+  .systems-note{
+    border: 1px dashed var(--panel-border);
+    padding: 14px 18px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13.5px;
+    color: var(--text-faint);
+    margin-bottom: 30px;
+    max-width: 62ch;
+  }
+  .systems-note strong{ color: var(--teal); font-weight: 500; }
+
+  .sys-card{
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    padding: 26px;
+  }
+  .sys-card + .sys-card{ margin-top: 18px; }
+  .sys-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .sys-card h3{ font-size: 19px; }
+  .sys-card .status{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--teal);
+    background: var(--teal-soft);
+    padding: 4px 9px;
+    white-space: nowrap;
+  }
+  .sys-card p{ color: var(--text-muted); font-size: 15.5px; margin-top: 12px; max-width: 60ch; }
+  .tag-row{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: var(--text-faint);
+    border: 1px solid var(--panel-border);
+    padding: 4px 9px;
+  }
+  .sys-link{
+    margin-top: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13.5px;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .sys-link:hover{ border-bottom-color: var(--accent); }
+
+  .role{
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .role:first-child{ padding-top: 0; }
+  .role:last-child{ border-bottom: none; }
+  .role .when{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: var(--text-faint);
+    padding-top: 3px;
+  }
+  .role h3{ font-size: 17.5px; }
+  .role .co{ color: var(--teal); font-size: 14.5px; font-family: 'Space Grotesk', sans-serif; margin-top: 2px; }
+  .role ul{ margin: 12px 0 0; padding-left: 18px; color: var(--text-muted); font-size: 15px; }
+  .role li + li{ margin-top: 6px; }
+  @media (max-width: 640px){
+    .role{ grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  .skill-groups{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .skill-group .label{ margin-bottom: 14px; }
+  .skill-group ul{ list-style: none; margin: 0; padding: 0; }
+  .skill-group li{
+    font-size: 14.5px;
+    color: var(--text-muted);
+    padding: 7px 0;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .skill-group li:last-child{ border-bottom: none; }
+  @media (max-width: 700px){ .skill-groups{ grid-template-columns: 1fr; } }
+
+  .edu{ display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px; }
+  .edu h3{ font-size: 17.5px; }
+  .edu .when{ font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--text-faint); }
+  .edu p{ color: var(--text-muted); margin-top: 6px; font-size: 15px; }
+
+  footer{ padding: 56px 0 64px; border-top: 1px solid var(--panel-border); }
+  .contact-grid{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  footer h2{ font-size: 26px; max-width: 14ch; }
+  .contact-links{ list-style: none; margin: 18px 0 0; padding: 0; }
+  .contact-links li{ margin-top: 8px; }
+  .contact-links a{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--text-muted);
+  }
+  .contact-links a:hover{ color: var(--accent); }
+  .home-base{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: var(--text-faint);
+    max-width: 28ch;
+  }
+  .home-base strong{ color: var(--text); font-weight: 500; }
+  .fine{
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--panel-border);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12.5px;
+    color: var(--text-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="mark">Yurii Hunko<span>.</span></div>
+    <nav>
+      <div class="navlinks" style="display:flex; gap:26px;">
+        <a href="#about">About</a>
+        <a href="#systems">Systems</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn" href="Yurii_Hunko_CV.pdf" download="Yurii_Hunko_CV.pdf" style="margin-left:22px;">Download CV</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="label">chernivtsi, ukraine — open to work</div>
+    <h1>Content operations, <em>built like systems.</em></h1>
+    <p class="sub">I run influencer and content programs the way an engineer runs infrastructure — sourcing, briefing, and reporting as repeatable processes, not one-off effort. Computer engineering background, marketing execution, and a habit of automating the parts that shouldn't need a human.</p>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="num">40%</div>
+        <div class="cap">reach growth delivered</div>
+      </div>
+      <div class="stat">
+        <div class="num">30%</div>
+        <div class="cap">engagement lift</div>
+      </div>
+      <div class="stat">
+        <div class="num">50+</div>
+        <div class="cap">creators sourced &amp; onboarded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">about</div>
+      <h2>Two skill sets, one habit of building the missing tool.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>My work has sat at the edge of content and operations for five years — first running paid social and account growth, then owning full influencer programs end-to-end: sourcing, briefing, compliance, delivery, and the reporting that proves it worked.</p>
+        <p>The Computer Engineering degree turned out to matter more day-to-day than expected. When a process repeats — writing scripts to a creator's tone, chasing screenshots for a report — I tend to write the tool instead of doing the task by hand again. Two of those tools are below. I'm now looking for a role — influencer, content ops, growth, or program management — where that combination is useful, not just influencer marketing specifically.</p>
+      </div>
+      <ul class="fact-list">
+        <li><span>Based in</span><span>Chernivtsi, Ukraine</span></li>
+        <li><span>Education</span><span>M.Sc. Computer Engineering</span></li>
+        <li><span>Platforms</span><span>TikTok, IG, YouTube, Twitch, Kick</span></li>
+        <li><span>Languages</span><span>Ukrainian, English</span></li>
+        <li><span>Currently</span><span>Open to new roles</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="systems">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">systems</div>
+      <h2>Two systems built to run without me.</h2>
+      <p>Both came out of the same complaint — a task worth automating. This page is home base; the tools below are extensions of it, not the other way around.</p>
+    </div>
+
+    <div class="sys-card">
+      <div class="sys-top">
+        <h3>Brief → Script</h3>
+        <span class="status">live</span>
+      </div>
+      <p>Takes a brand brief and a creator's tone and drafts a timecoded short-form script — hook, body, proof, CTA — in seconds instead of the twenty minutes it takes by hand. Supports single, batch, and saved-preset generation, with export straight to Google Docs.</p>
+      <div class="tag-row">
+        <span class="tag">Cloudflare Workers</span>
+        <span class="tag">Claude API</span>
+        <span class="tag">Script generation</span>
+      </div>
+      <a class="sys-link" href="https://brief-to-script.hunkoyura.workers.dev/" target="_blank" rel="noopener">Open the tool</a>
+    </div>
+
+    <div class="sys-card">
+      <div class="sys-top">
+        <h3>Post → Report</h3>
+        <span class="status">live — team access</span>
+      </div>
+      <p>A campaign performance tracker: screenshots of post metrics go in, a reviewed dataset and a printable brand report come out. Uses Claude Vision to read metrics off screenshots, with a human review queue before anything ships to a client.</p>
+      <div class="tag-row">
+        <span class="tag">Railway</span>
+        <span class="tag">Claude Vision</span>
+        <span class="tag">SVG reporting</span>
+      </div>
+      <a class="sys-link" href="https://post-tracker-simple-production.up.railway.app" target="_blank" rel="noopener">Open the tool</a>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">experience</div>
+      <h2>Where the process got built.</h2>
+    </div>
+
+    <div class="role">
+      <div class="when">Oct 2025 — May 2026</div>
+      <div>
+        <h3>Influence &amp; Content Manager</h3>
+        <div class="co">NDA client</div>
+        <ul>
+          <li>Sourced, vetted, and onboarded 50+ creators and streamers across Twitch, TikTok, and Instagram for tier-1 European and international markets.</li>
+          <li>Wrote 100+ tailored short-form scripts, adapting each to a creator's persona while keeping the core marketing hook intact.</li>
+          <li>Owned the full campaign lifecycle — negotiation, compliance tracking, delivery, and post-campaign reporting — improving on-time delivery and giving stakeholders a clear ROI view.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">May 2023 — Aug 2025</div>
+      <div>
+        <h3>Influence &amp; Content Manager</h3>
+        <div class="co">Self-employed</div>
+        <ul>
+          <li>Ran a portfolio of 6 Instagram accounts end-to-end — planning, creator outreach, daily posting — for a 40% increase in reach and 25% follower growth over 18 months.</li>
+          <li>Lifted average engagement 30% through audience research and A/B testing of formats and hooks.</li>
+          <li>Built advertiser and creator partnerships that opened new monetization channels and raised brand-deal frequency.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="role">
+      <div class="when">Apr 2021 — Mar 2023</div>
+      <div>
+        <h3>Marketing Specialist</h3>
+        <div class="co">OKC Agency</div>
+        <ul>
+          <li>Planned and produced social content as part of integrated marketing strategy.</li>
+          <li>Launched paid campaigns across Meta, Instagram, and LinkedIn Ads.</li>
+          <li>Built audience-growth strategies that lifted engagement and brand awareness.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">skills</div>
+      <h2>What transfers to the next role.</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <div class="label">operations</div>
+        <ul>
+          <li>End-to-end influencer ops</li>
+          <li>Sourcing, vetting, negotiation</li>
+          <li>Campaign tracking &amp; compliance</li>
+          <li>Cross-cultural stakeholder mgmt</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="label">content</div>
+        <ul>
+          <li>Creative briefing</li>
+          <li>Script adaptation, TikTok/IG/YT</li>
+          <li>Paid social (Meta, LinkedIn)</li>
+          <li>Market &amp; competitor analysis</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="label">systems</div>
+        <ul>
+          <li>AI-driven workflow automation</li>
+          <li>Computer engineering foundation</li>
+          <li>Reporting &amp; data pipelines</li>
+          <li>Tool-building for repeat tasks</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="label">education</div>
+    </div>
+    <div class="edu">
+      <div>
+        <h3>Chernivtsi National University</h3>
+        <p>M.Sc., Computer Engineering</p>
+      </div>
+      <div class="when">Sep 2014 — Dec 2019</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="label">contact</div>
+        <h2>Let's talk about the role.</h2>
+        <ul class="contact-links">
+          <li><a href="mailto:hunkoyura@gmail.com">hunkoyura@gmail.com</a></li>
+          <li><a href="tel:+380973323238">+380 97 332 3238</a></li>
+          <li><a href="https://linkedin.com/in/yurii-hunko" target="_blank" rel="noopener">linkedin.com/in/yurii-hunko</a></li>
+        </ul>
+      </div>
+      <p class="home-base"><strong>This page is home base.</strong> Brief → Script and Post → Report are systems that branch off it — not the other way around.</p>
+    </div>
+    <div class="fine">
+      <span>© 2026 Yurii Hunko</span>
+      <span>Chernivtsi, Ukraine</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
