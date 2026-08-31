@@ -249,6 +249,11 @@
     padding: 4px 9px;
     white-space: nowrap;
   }
+  .sys-card .status.building{
+    color: var(--text-faint);
+    background: transparent;
+    border: 1px dashed var(--panel-border);
+  }
   .sys-card p{ color: var(--text-muted); font-size: 15.5px; margin-top: 12px; max-width: 60ch; }
   .tag-row{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
   .tag{
@@ -422,8 +427,8 @@
   <div class="wrap">
     <div class="section-head">
       <div class="label">systems</div>
-      <h2>Two marketing-ops systems, built to run without me.</h2>
-      <p>Both came out of the same complaint on the job: a marketing task — writing scripts, chasing screenshots for reports — that was repeatable enough to automate. This page is home base; the tools below are extensions of it, not the other way around.</p>
+      <h2>Three marketing-ops systems, built to run without me.</h2>
+      <p>Each came out of the same complaint on the job: a marketing task — writing scripts, chasing screenshots for reports, hunting creators by hand — that was repeatable enough to automate. This page is home base; the tools below are extensions of it, not the other way around.</p>
     </div>
 
     <div class="sys-card">
@@ -454,6 +459,19 @@
         <span class="tag">SVG reporting</span>
       </div>
       <a class="sys-link" href="https://post-tracker-simple-production.up.railway.app" target="_blank" rel="noopener">Open the tool</a>
+    </div>
+
+    <div class="sys-card">
+      <div class="sys-top">
+        <h3>Search → Shortlist</h3>
+        <span class="status building">in progress</span>
+      </div>
+      <p>A creator discovery tool: set the parameters — platform, niche, audience size, engagement rate, geography — and it returns a matched, ranked shortlist instead of hours of manual scrolling and spreadsheet tracking.</p>
+      <div class="tag-row">
+        <span class="tag">Influencer sourcing</span>
+        <span class="tag">Creator discovery</span>
+        <span class="tag">In development</span>
+      </div>
     </div>
   </div>
 </section>
@@ -571,7 +589,7 @@
           <li><a href="https://linkedin.com/in/yurii-hunko" target="_blank" rel="noopener">linkedin.com/in/yurii-hunko</a></li>
         </ul>
       </div>
-      <p class="home-base"><strong>This page is home base.</strong> Brief → Script and Post → Report are systems that branch off it — not the other way around.</p>
+      <p class="home-base"><strong>This page is home base.</strong> Brief → Script, Post → Report, and Search → Shortlist are systems that branch off it — not the other way around.</p>
     </div>
     <div class="fine">
       <span>© 2026 Yurii Hunko</span>
