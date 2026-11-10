@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post to Report, a tool by Yurii Hunko</title>
+<meta name="description" content="Reads post stats from creator screenshots, holds impossible numbers for manual review and builds the campaign report for the brand.">
+<link rel="canonical" href="https://hunkoyura.com/post-to-report/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hunkoyura.com/post-to-report/">
+<meta property="og:title" content="Post to Report, a tool by Yurii Hunko">
+<meta property="og:description" content="Reads post stats from creator screenshots, holds impossible numbers for manual review and builds the campaign report for the brand.">
+<meta property="og:image" content="https://hunkoyura.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Post to Report, a tool by Yurii Hunko">
+<meta name="twitter:description" content="Reads post stats from creator screenshots, holds impossible numbers for manual review and builds the campaign report for the brand.">
+<meta name="twitter:image" content="https://hunkoyura.com/og.jpg">
+<meta name="theme-color" content="#12382C" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F4EEDC" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8R37BRJNRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8R37BRJNRV');
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 26 20">
+    <path d="M1.5 10h22M15 2l8.5 8-8.5 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ok" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="#1F6B45"/><path d="M5.8 10.4l2.8 2.8 5.6-6" fill="none" stroke="#F4EEDC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="hold" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="#B3311B"/><path d="M10 5.4v5.4" stroke="#F4EEDC" stroke-width="2.2" stroke-linecap="round"/><circle cx="10" cy="14.2" r="1.3" fill="#F4EEDC"/>
+  </symbol>
+</svg>
+
+<header class="wrap top">
+  <a class="name" href="/">Yurii Hunko</a>
+  <nav aria-label="Site">
+    <a href="/#tools">Tools</a>
+    <a href="/#contact">Contact</a>
+    <button type="button" class="theme" id="theme-toggle" aria-label="Switch theme">Light</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <a class="back" href="/#tools"><svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg> All tools</a>
+
+  <section class="tool">
+    <div class="tool-head">
+      <h1>Post <svg class="arrow" role="img" aria-label="to"><use href="#arrow"/></svg> Report</h1>
+      <span class="status">Live, team access</span>
+    </div>
+    <div class="tool-body">
+      <p class="lede">Reads the stats from a creator's screenshot and builds the campaign report for the brand. Anything that can't be true is held back for a person to check, with the reason attached.</p>
+      <dl class="facts">
+        <div><dt>Reads</dt><dd>Views, reach, likes, comments, shares, saves</dd></div>
+        <div><dt>Two views</dt><dd>By campaign, with totals and a written summary. By creator, across every campaign they did</dd></div>
+        <div><dt>Checks</dt><dd>Likes above views, engagement over 100%, reach far beyond the follower count</dd></div>
+        <div><dt>Built with</dt><dd>Node.js, Claude Vision, Railway. Creator profiles are plain arithmetic, no AI call</dd></div>
+      </dl>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen-bar">
+        <div class="picker" id="shot-picker">
+          <span>Screenshot</span>
+          <button type="button" aria-pressed="true" data-shot="clean">Reads cleanly</button>
+          <button type="button" aria-pressed="false" data-shot="odd">Misread numbers</button>
+        </div>
+        <span>Sample data</span>
+      </div>
+      <div class="flow">
+        <div class="paper">
+          <h3>Screenshot from the creator</h3>
+          <div class="shot swap" id="shot-in"></div>
+        </div>
+        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+        <div class="paper" aria-live="polite">
+          <h3>What the tool recorded</h3>
+          <div class="swap" id="shot-out"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="open" href="https://post-tracker-simple-production.up.railway.app" target="_blank" rel="noopener">Open Post to Report <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="src" href="https://github.com/hunkoyura-ops/post-tracker-simple" target="_blank" rel="noopener">View source on GitHub</a>
+    </div>
+    <p class="aside">The tool asks you to sign in. Access is limited to my team.</p>
+  </section>
+
+  <section class="story">
+    <h2>Why it exists</h2>
+    <div class="prose"><p>Creators send screenshots of their stats, and I used to retype the numbers into a spreadsheet. It is slow, and one mistyped digit ends up in a report the brand reads.</p></div>
+  </section>
+  <section class="story">
+    <h2>What goes in, what comes out</h2>
+    <div class="prose"><p>You upload the screenshot. The tool reads views, reach, likes, comments, shares and saves, and files them under the campaign and the creator.</p><p>The campaign view shows total views and reach, the average engagement rate and a written conclusion: top performers, anomalies, recommendations. The creator view is a profile across every campaign, with each post and its engagement rate, so you can see who delivers every time and not only once.</p></div>
+  </section>
+  <section class="story">
+    <h2>Decisions I made</h2>
+    <div class="prose"><ul><li><b>A recognition error must not reach the brand.</b> Every reading passes a validation layer. More likes than views, engagement above 100%, reach more than 20 times the follower count, a negative value: any of these sends the record to a manual review queue with the reason written out.</li><li><b>Clean records go straight through.</b> The queue only holds what needs a person.</li><li><b>No reach metric, no guess.</b> If the tool cannot read views, reach or impressions at all, it asks for manual input.</li><li><b>Creator profiles use no AI.</b> They are local arithmetic, so they open instantly and cost nothing in API quota.</li></ul></div>
+  </section>
+
+  <a class="next" href="/inbox-to-triage/">
+    <span>Next tool</span>
+    <strong>Inbox <svg class="arrow" role="img" aria-label="to"><use href="#arrow"/></svg> Triage</strong>
+  </a>
+
+  <footer class="foot">© 2026 Yurii Hunko</footer>
+
+</main>
+
+<script src="/site.js"></script>
+</body>
+</html>

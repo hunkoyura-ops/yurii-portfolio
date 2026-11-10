@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brief to Script, a tool by Yurii Hunko</title>
+<meta name="description" content="Turns a brand brief and a creator's tone into a timecoded script draft with hook, body, proof and call to action.">
+<link rel="canonical" href="https://hunkoyura.com/brief-to-script/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hunkoyura.com/brief-to-script/">
+<meta property="og:title" content="Brief to Script, a tool by Yurii Hunko">
+<meta property="og:description" content="Turns a brand brief and a creator's tone into a timecoded script draft with hook, body, proof and call to action.">
+<meta property="og:image" content="https://hunkoyura.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brief to Script, a tool by Yurii Hunko">
+<meta name="twitter:description" content="Turns a brand brief and a creator's tone into a timecoded script draft with hook, body, proof and call to action.">
+<meta name="twitter:image" content="https://hunkoyura.com/og.jpg">
+<meta name="theme-color" content="#12382C" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F4EEDC" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8R37BRJNRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8R37BRJNRV');
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 26 20">
+    <path d="M1.5 10h22M15 2l8.5 8-8.5 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ok" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="#1F6B45"/><path d="M5.8 10.4l2.8 2.8 5.6-6" fill="none" stroke="#F4EEDC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="hold" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="#B3311B"/><path d="M10 5.4v5.4" stroke="#F4EEDC" stroke-width="2.2" stroke-linecap="round"/><circle cx="10" cy="14.2" r="1.3" fill="#F4EEDC"/>
+  </symbol>
+</svg>
+
+<header class="wrap top">
+  <a class="name" href="/">Yurii Hunko</a>
+  <nav aria-label="Site">
+    <a href="/#tools">Tools</a>
+    <a href="/#contact">Contact</a>
+    <button type="button" class="theme" id="theme-toggle" aria-label="Switch theme">Light</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <a class="back" href="/#tools"><svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg> All tools</a>
+
+  <section class="tool">
+    <div class="tool-head">
+      <h1>Brief <svg class="arrow" role="img" aria-label="to"><use href="#arrow"/></svg> Script</h1>
+      <span class="status">Live</span>
+    </div>
+    <div class="tool-body">
+      <p class="lede">Turns a brand brief and a creator's tone into a timecoded script draft: hook, body, proof and call to action, with on-screen text, a caption and hashtags.</p>
+      <dl class="facts">
+        <div><dt>Modes</dt><dd>One creator, a whole batch in one pass, or saved presets for creators you work with often</dd></div>
+        <div><dt>Export</dt><dd>Google Docs or a .doc file</dd></div>
+        <div><dt>Safety net</dt><dd>Falls back to local templates when the AI is unavailable, so it never returns nothing</dd></div>
+        <div><dt>Built with</dt><dd>Cloudflare Workers, Claude API</dd></div>
+      </dl>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen-bar">
+        <div class="picker" id="style-picker">
+          <span>Creator tone</span>
+          <button type="button" aria-pressed="true" data-style="calm">Calm, talks to camera</button>
+          <button type="button" aria-pressed="false" data-style="fast">Fast, jump cuts</button>
+          <button type="button" aria-pressed="false" data-style="dry">Dry humor</button>
+        </div>
+        <span>Sample data</span>
+      </div>
+      <div class="flow">
+        <div class="paper">
+          <h3>Brief</h3>
+          <div class="row"><span>Brand</span><span>Pebble, a reusable bottle</span></div>
+          <div class="row"><span>Platform</span><span>Reels, 30 seconds</span></div>
+          <div class="row"><span>Message</span><span>Keeps drinks cold all day</span></div>
+          <div class="row"><span>CTA</span><span>Promo code push</span></div>
+          <div class="row"><span>Tone</span><span id="tone-echo">Calm, talks to camera</span></div>
+          <p class="note">Same brief, different creator. Change the tone and the script is rewritten in their voice.</p>
+        </div>
+        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+        <div class="paper" aria-live="polite">
+          <h3>Script draft</h3>
+          <div class="swap" id="script-out"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="open" href="https://brief-to-script.hunkoyura.workers.dev/" target="_blank" rel="noopener">Open Brief to Script <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="src" href="https://github.com/hunkoyura-ops/brief-to-script" target="_blank" rel="noopener">View source on GitHub</a>
+    </div>
+  </section>
+
+  <section class="story">
+    <h2>Why it exists</h2>
+    <div class="prose"><p>Writing a script for one creator used to take me 15 to 20 minutes, and every creator on a campaign needs their own, in their own voice. The brief stays the same. Only the voice changes.</p><p>That is repetitive work with a clear pattern, so I built a tool for it.</p></div>
+  </section>
+  <section class="story">
+    <h2>What goes in, what comes out</h2>
+    <div class="prose"><p>You set the brand or product, the key message, the platform (Stories, TikTok, Reels or Shorts), the video length (15, 30 or 60 seconds), the creator's tone and the style of the call to action: a soft mention, a promo code push, link in bio or an app install.</p><p>Back comes a script on a timeline. Each beat has the spoken line and a cue for on-screen text. A caption and hashtags come with it. Drafts can be saved to a library, opened in Google Docs or downloaded as a .doc file.</p></div>
+  </section>
+  <section class="story">
+    <h2>Decisions I made</h2>
+    <div class="prose"><ul><li><b>It never returns nothing.</b> Requests go through my own backend, a Cloudflare Worker that calls the Claude API. If the AI is unavailable, the tool falls back to local templates.</li><li><b>The script has to fit the clock.</b> The prompt holds the text to a speaking-pace budget for the chosen length.</li><li><b>No invented facts.</b> The model may not make up claims about the product that are not in the brief.</li><li><b>Disclosure stays a human job.</b> The tool reminds you about the paid partnership label or #ad, and does not add it for you.</li><li><b>A draft is a draft.</b> I still edit every one before it goes out, usually the hook.</li></ul></div>
+  </section>
+
+  <a class="next" href="/post-to-report/">
+    <span>Next tool</span>
+    <strong>Post <svg class="arrow" role="img" aria-label="to"><use href="#arrow"/></svg> Report</strong>
+  </a>
+
+  <footer class="foot">© 2026 Yurii Hunko</footer>
+
+</main>
+
+<script src="/site.js"></script>
+</body>
+</html>

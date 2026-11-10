@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search to Shortlist, a tool by Yurii Hunko</title>
+<meta name="description" content="A creator search tool in progress: campaign criteria in, a ranked shortlist of creators out.">
+<link rel="canonical" href="https://hunkoyura.com/search-to-shortlist/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hunkoyura.com/search-to-shortlist/">
+<meta property="og:title" content="Search to Shortlist, a tool by Yurii Hunko">
+<meta property="og:description" content="A creator search tool in progress: campaign criteria in, a ranked shortlist of creators out.">
+<meta property="og:image" content="https://hunkoyura.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Search to Shortlist, a tool by Yurii Hunko">
+<meta name="twitter:description" content="A creator search tool in progress: campaign criteria in, a ranked shortlist of creators out.">
+<meta name="twitter:image" content="https://hunkoyura.com/og.jpg">
+<meta name="theme-color" content="#12382C" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F4EEDC" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8R37BRJNRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8R37BRJNRV');
+</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 26 20">
+    <path d="M1.5 10h22M15 2l8.5 8-8.5 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="ok" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="#1F6B45"/><path d="M5.8 10.4l2.8 2.8 5.6-6" fill="none" stroke="#F4EEDC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="hold" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="#B3311B"/><path d="M10 5.4v5.4" stroke="#F4EEDC" stroke-width="2.2" stroke-linecap="round"/><circle cx="10" cy="14.2" r="1.3" fill="#F4EEDC"/>
+  </symbol>
+</svg>
+
+<header class="wrap top">
+  <a class="name" href="/">Yurii Hunko</a>
+  <nav aria-label="Site">
+    <a href="/#tools">Tools</a>
+    <a href="/#contact">Contact</a>
+    <button type="button" class="theme" id="theme-toggle" aria-label="Switch theme">Light</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <a class="back" href="/#tools"><svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg> All tools</a>
+
+  <section class="tool">
+    <div class="tool-head">
+      <h1>Search <svg class="arrow" role="img" aria-label="to"><use href="#arrow"/></svg> Shortlist</h1>
+      <span class="status wip">In progress</span>
+    </div>
+    <div class="tool-body">
+      <p class="lede">Building a shortlist by hand means hours of scrolling. This takes the criteria for a campaign and returns a ranked list of creators worth writing to.</p>
+      <dl class="facts">
+        <div><dt>Takes</dt><dd>Platform, niche, audience size, engagement rate, location</dd></div>
+        <div><dt>Returns</dt><dd>A ranked list, best fit first</dd></div>
+        <div><dt>Status</dt><dd>Being built. The preview shows the intended result</dd></div>
+      </dl>
+    </div>
+
+    <div class="specimen">
+      <div class="specimen-bar">
+        <span>Design preview</span>
+        <span>Sample data</span>
+      </div>
+      <div class="flow">
+        <div class="paper">
+          <h3>Criteria</h3>
+          <div class="row"><span>Platform</span><span>TikTok</span></div>
+          <div class="row"><span>Niche</span><span>Fitness</span></div>
+          <div class="row"><span>Audience</span><span>10K to 50K</span></div>
+          <div class="row"><span>Engagement</span><span>Above 4%</span></div>
+          <div class="row"><span>Location</span><span>Poland</span></div>
+        </div>
+        <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg>
+        <div class="paper">
+          <h3>Shortlist, best fit first</h3>
+          <ol class="rank">
+            <li><span class="n">1</span><div><b>Creator A</b><span class="sub">38K followers, 7.2% engagement</span></div><div class="fit" role="img" aria-label="Fit 94 of 100"><i style="width:94%"></i></div></li>
+            <li><span class="n">2</span><div><b>Creator B</b><span class="sub">21K followers, 6.1% engagement</span></div><div class="fit" role="img" aria-label="Fit 86 of 100"><i style="width:86%"></i></div></li>
+            <li><span class="n">3</span><div><b>Creator C</b><span class="sub">46K followers, 4.8% engagement</span></div><div class="fit" role="img" aria-label="Fit 71 of 100"><i style="width:71%"></i></div></li>
+            <li><span class="n">4</span><div><b>Creator D</b><span class="sub">12K followers, 4.3% engagement</span></div><div class="fit" role="img" aria-label="Fit 58 of 100"><i style="width:58%"></i></div></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <section class="story">
+    <h2>Why it exists</h2>
+    <div class="prose"><p>Building a shortlist by hand means hours of scrolling through profiles, checking audience size and engagement one creator at a time. The criteria are known before the search starts, so the search itself can be done by a tool.</p></div>
+  </section>
+  <section class="story">
+    <h2>Where it stands</h2>
+    <div class="prose"><p>This one is not finished. The preview above shows the result I am building toward: you set the platform, niche, audience size, engagement rate and location, and get back a ranked list with the best fit first.</p></div>
+  </section>
+
+  <a class="next" href="/brief-to-script/">
+    <span>Next tool</span>
+    <strong>Brief <svg class="arrow" role="img" aria-label="to"><use href="#arrow"/></svg> Script</strong>
+  </a>
+
+  <footer class="foot">© 2026 Yurii Hunko</footer>
+
+</main>
+
+<script src="/site.js"></script>
+</body>
+</html>
