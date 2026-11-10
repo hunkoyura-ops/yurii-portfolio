@@ -389,7 +389,33 @@
   }
   .open:hover{ background: var(--blush); }
   .open .arrow{ color: currentColor; margin: 0; width: 18px; height: 14px; }
+  .actions{ display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 30px; }
+  .actions .open{ margin-top: 0; }
+  .src{
+    color: var(--butter);
+    font-size: 16px;
+    border-bottom: 1px solid var(--blush);
+    padding-bottom: 1px;
+    transition: color .15s ease;
+  }
+  .src:hover{ color: var(--blush); }
   .aside{ margin-top: 30px; color: var(--sage); font-size: 16px; }
+  .aside .src{ margin-left: 6px; }
+
+  .reach{ padding: 72px 0 80px; border-top: 1px solid var(--line); }
+  .reach p{ color: var(--sage); font-size: 16px; margin-bottom: 16px; }
+  .reach a{
+    display: inline-block;
+    font-size: clamp(28px, 5.6vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 600;
+    border-bottom: 0.055em solid var(--blush);
+    padding-bottom: 0.06em;
+    overflow-wrap: anywhere;
+    transition: color .15s ease;
+  }
+  .reach a:hover{ color: var(--blush); }
 
   .foot{
     padding: 22px 0 34px;
@@ -448,6 +474,7 @@
     <a href="#report">Report</a>
     <a href="#triage">Triage</a>
     <a href="#shortlist">Shortlist</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -502,7 +529,10 @@
       </div>
     </div>
 
-    <a class="open" href="https://brief-to-script.hunkoyura.workers.dev/" target="_blank" rel="noopener">Open Brief to Script <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+    <div class="actions">
+      <a class="open" href="https://brief-to-script.hunkoyura.workers.dev/" target="_blank" rel="noopener">Open Brief to Script <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="src" href="https://github.com/hunkoyura-ops/brief-to-script" target="_blank" rel="noopener">View source on GitHub</a>
+    </div>
   </section>
 
   <!-- Post → Report -->
@@ -543,7 +573,10 @@
       </div>
     </div>
 
-    <a class="open" href="https://post-tracker-simple-production.up.railway.app" target="_blank" rel="noopener">Open Post to Report <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+    <div class="actions">
+      <a class="open" href="https://post-tracker-simple-production.up.railway.app" target="_blank" rel="noopener">Open Post to Report <svg class="arrow" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="src" href="https://github.com/hunkoyura-ops/post-tracker-simple" target="_blank" rel="noopener">View source on GitHub</a>
+    </div>
   </section>
 
   <!-- Inbox → Triage -->
@@ -580,7 +613,7 @@
       </div>
     </div>
 
-    <p class="aside">Runs inside my own n8n workspace, so there is no public link.</p>
+    <p class="aside">Runs inside my own n8n workspace, so there is no public link. <a class="src" href="https://github.com/hunkoyura-ops/Inbox-Triage" target="_blank" rel="noopener">View the workflow on GitHub</a></p>
   </section>
 
   <!-- Search → Shortlist -->
@@ -624,6 +657,11 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="reach" id="contact">
+    <p>Questions, or want one of these for your team?</p>
+    <a href="mailto:i@hunkoyura.com">i@hunkoyura.com</a>
   </section>
 
   <footer class="foot">© 2026 Yurii Hunko</footer>
